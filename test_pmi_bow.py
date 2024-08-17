@@ -42,7 +42,7 @@ def tokenize(sentence):
 
 
 
-tsukurepo_df = pd.read_csv('dataset_for_jtm(not -log).csv',  encoding='ms932', sep=',',skiprows=0)  
+tsukurepo_df = pd.read_csv('../dataset/dataset_for_jtm(not -log).csv',  encoding='ms932', sep=',',skiprows=0)  
 tsukurepo = tsukurepo_df['tsukurepos']
 bow_unigrams=[]
 w_count=0
@@ -64,7 +64,7 @@ for phrase,n_gram in n_gramed_phrases_byn.items():
     ph_ngram.append([n_gram+1,phrase])
 phrase_df = pd.DataFrame(ph_ngram, columns=['n_gram','phrase'])
 
-with codecs.open("npmi_bow.csv", "w", "ms932", "ignore") as f: 
+with codecs.open("../dataset/npmi_bow.csv", "w", "ms932", "ignore") as f: 
     #header=Trueで、見出しを書き出す
     phrase_df.to_csv(f, index=False, encoding="ms932", mode='w', header=True) 
 n_gram_bow_list = [ [' '.join(row)]  for row in n_grams_bow ] 
@@ -74,7 +74,7 @@ df=pd.DataFrame(n_gram_bow_list, columns=['phrased_sentences'])
 
 df_r = df.reset_index()
 tsukurepo_df = pd.concat([tsukurepo_df,df],axis=1)
-with codecs.open("tsukurepo_npmi_phrased.csv", "w", "ms932", "ignore") as f2: 
+with codecs.open("../dataset/tsukurepo_npmi_phrased.csv", "w", "ms932", "ignore") as f2: 
     #header=Trueで、見出しを書き出す
     tsukurepo_df.to_csv(f2, index=False, encoding="ms932", mode='w', header=True) 
 
